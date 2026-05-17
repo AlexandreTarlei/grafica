@@ -1,0 +1,4 @@
+/* Tokens e overrides globais do produto (além do tema shadcn em index.css) */
+:root {
+  --app-header-height: 3.5rem; /* h-14 — alinhado com ShopHeader e AdminNavbar */
+}

@@ -1,0 +1,13 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "basedpyright.analysis.extraPaths": ["${workspaceFolder}/../backend"],
+  "python.analysis.extraPaths": ["${workspaceFolder}/../backend"],
+  "python.defaultInterpreterPath": "${workspaceFolder}/../backend/.venv/Scripts/python.exe"
+}

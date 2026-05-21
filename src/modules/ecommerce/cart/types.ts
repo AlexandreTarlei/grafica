@@ -25,6 +25,14 @@ export type Cart = {
   total: number
 }
 
+export const EMPTY_CART: Cart = {
+  id: '',
+  linhas: [],
+  subtotal: 0,
+  taxas: 0,
+  total: 0,
+}
+
 export type AddCartItemInput = {
   productId: string
   quantidade: number

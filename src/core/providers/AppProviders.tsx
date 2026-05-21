@@ -8,7 +8,6 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { ErrorBoundary } from '@/core/ErrorBoundary'
 import { createAppQueryClient } from '@/core/query-client'
 import { TenantPlatformProvider } from '@/core/providers/TenantPlatformProvider'
-import { RealtimeProvider } from '@/realtime/RealtimeProvider'
 import { TenantProvider } from '@/contexts/TenantContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
@@ -23,11 +22,9 @@ export function AppProviders({ children }: { children: ReactNode }) {
             <TooltipProvider>
               <TenantProvider>
                 <TenantPlatformProvider>
-                  <RealtimeProvider>
-                    <GlobalFetchingBar />
-                    {children}
-                    <Toaster richColors position="top-right" closeButton />
-                  </RealtimeProvider>
+                  <GlobalFetchingBar />
+                  {children}
+                  <Toaster richColors position="top-right" closeButton />
                 </TenantPlatformProvider>
               </TenantProvider>
             </TooltipProvider>

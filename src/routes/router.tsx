@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components -- manifesto de rotas */
 import { lazy } from 'react'
-import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { RequireModuleRoute } from '@/core/permissions/RequireModuleRoute'
 import { AdminLayout } from '@/layouts/AdminLayout'
 import { AuthLayout } from '@/layouts/AuthLayout'
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
           {
             element: (
               <RequireModuleRoute moduleId="ecommerce" redirectTo="/login">
-                <Outlet />
+                <RequireAuth />
               </RequireModuleRoute>
             ),
             children: [

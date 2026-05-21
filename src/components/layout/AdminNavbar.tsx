@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import { getPageTitle } from '@/config/page-titles'
+import { getAdminBreadcrumbCurrent } from '@/config/page-titles'
 import type { ThemeMode } from '@/contexts/ThemeContext'
 import { useAuth } from '@/hooks/useAuth'
 import { useTenant } from '@/hooks/useTenant'
@@ -26,7 +26,7 @@ const themeSequence: ThemeMode[] = ['light', 'dark', 'system']
 
 export function AdminNavbar() {
   const location = useLocation()
-  const title = getPageTitle(location.pathname)
+  const breadcrumbCurrent = getAdminBreadcrumbCurrent(location.pathname)
   const { user, logout } = useAuth()
   const { tenant, setTenant } = useTenant()
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -55,9 +55,19 @@ export function AdminNavbar() {
     >
       <SidebarTrigger />
 
-      <div className="min-w-0 flex-1">
-        <h1 className="truncate text-base font-semibold tracking-tight">{title}</h1>
-      </div>
+      <nav aria-label="Breadcrumb" className="min-w-0 flex-1">
+        <ol className="text-muted-foreground flex min-w-0 items-center gap-1.5 text-sm">
+          <li className="shrink-0">
+            <Link to="/admin/dashboard" className="hover:text-foreground font-medium transition-colors">
+              Admin
+            </Link>
+          </li>
+          <li aria-hidden className="shrink-0 opacity-50">
+            /
+          </li>
+          <li className="text-foreground min-w-0 truncate font-medium">{breadcrumbCurrent}</li>
+        </ol>
+      </nav>
 
       <div className="flex shrink-0 items-center gap-2">
         {import.meta.env.DEV ? (

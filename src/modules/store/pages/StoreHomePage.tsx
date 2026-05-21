@@ -17,14 +17,15 @@ import {
 import { useStoreProducts } from '@/modules/store/hooks/useStoreProducts'
 import { cn } from '@/lib/utils'
 
-const CATEGORY_GRADIENTS = [
+/** Variações só com tokens de tema (sem cores Tailwind fixas). */
+const CATEGORY_SURFACES = [
   'from-primary/15 to-primary/5',
-  'from-blue-500/15 to-blue-500/5',
-  'from-violet-500/15 to-violet-500/5',
-  'from-amber-500/15 to-amber-500/5',
-  'from-emerald-500/15 to-emerald-500/5',
-  'from-rose-500/15 to-rose-500/5',
-]
+  'from-primary/10 to-muted/40',
+  'from-muted/50 to-card',
+  'from-primary/8 to-accent/30',
+  'from-accent/40 to-muted/30',
+  'from-primary/12 to-background',
+] as const
 
 export function StoreHomePage() {
   const C = storeHomeContent
@@ -78,8 +79,8 @@ export function StoreHomePage() {
               key={cat.id}
               to={`/produtos?categoria=${cat.id}`}
               className={cn(
-                'store-card-hover border-border bg-card rounded-xl border p-4 text-center text-sm font-medium ring-1 ring-border/60',
-                `bg-gradient-to-br ${CATEGORY_GRADIENTS[i % CATEGORY_GRADIENTS.length]}`,
+                'store-card-hover surface-card border-0 p-4 text-center text-sm font-medium',
+                `bg-gradient-to-br ${CATEGORY_SURFACES[i % CATEGORY_SURFACES.length]}`,
               )}
             >
               {cat.label}

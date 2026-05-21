@@ -158,6 +158,9 @@
   .store-hero {
     @apply relative overflow-hidden;
   }
+  .surface-card {
+    @apply bg-card rounded-xl shadow-card ring-1 ring-border/60;
+  }
   .store-card-hover {
     transition-property: color, background-color, border-color, box-shadow, transform, opacity;
     transition-duration: var(--transition-base);

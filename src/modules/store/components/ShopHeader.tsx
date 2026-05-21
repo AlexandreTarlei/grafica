@@ -117,6 +117,10 @@ export function ShopHeader() {
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-4 px-2 pb-4">
+                <div className="flex items-center justify-between gap-2 sm:hidden">
+                  <span className="text-muted-foreground text-sm">Tema</span>
+                  <ThemeToggle size="icon-sm" />
+                </div>
                 <StoreSearch className="w-full md:hidden" onNavigate={() => setOpen(false)} />
                 {NAV.map((item) => (
                   <Link

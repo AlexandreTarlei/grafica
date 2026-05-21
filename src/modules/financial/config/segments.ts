@@ -24,9 +24,3 @@ export function isFinancialWidgetVisibleInSegment(
 ): boolean {
   return SEGMENT_WIDGETS[segment].includes(id)
 }
-
-/** @deprecated Prefer `useFinancialWidgetVisibility` com segmento da plataforma. */
-export function isFinancialWidgetVisible(id: FinancialWidgetId): boolean {
-  const seg = getResolvedBusinessSegment()
-  return isFinancialWidgetVisibleInSegment(seg, id)
-}

@@ -4,6 +4,9 @@ import type { ReactNode } from 'react'
 
 export type DataTableDensity = 'default' | 'dense'
 
+/** Em viewport &lt; md, mostra cards em vez de scroll horizontal. */
+export type DataTableLayout = 'table' | 'responsive'
+
 export type DataTableEmptyState = {
   title: string
   description?: string

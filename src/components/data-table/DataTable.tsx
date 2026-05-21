@@ -10,7 +10,8 @@ import {
 } from '@tanstack/react-table'
 import { EmptyState } from '@/components/layout/EmptyState'
 import { LoadingTable } from '@/components/data-table/LoadingTable'
-import type { DataTableDensity, DataTableEmptyState } from '@/components/data-table/types'
+import { DataTableMobileCards } from '@/components/data-table/DataTableMobileCards'
+import type { DataTableDensity, DataTableEmptyState, DataTableLayout } from '@/components/data-table/types'
 import {
   Table,
   TableBody,
@@ -28,6 +29,8 @@ export type DataTableProps<T> = {
   emptyState?: DataTableEmptyState
   className?: string
   density?: DataTableDensity
+  /** `responsive`: cards em mobile, tabela a partir de `md`. */
+  layout?: DataTableLayout
   /** Client-side sorting */
   sorting?: SortingState
   onSortingChange?: OnChangeFn<SortingState>
@@ -45,6 +48,7 @@ export function DataTable<T>({
   emptyState,
   className,
   density = 'default',
+  layout = 'responsive',
   sorting,
   onSortingChange,
   manualSorting,
@@ -91,13 +95,59 @@ export function DataTable<T>({
     )
   }
 
+  const tableWrapClass = cn('surface-card overflow-hidden', className)
+
+  if (layout === 'responsive') {
+    return (
+      <div className={tableWrapClass}>
+        <DataTableMobileCards table={table} />
+        <div className="hidden md:block">
+          <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((hg) => (
+            <TableRow key={hg.id} className="hover:bg-transparent">
+              {hg.headers.map((header) => (
+                <TableHead
+                  key={header.id}
+                  className={cn(
+                    headClass,
+                    'text-muted-foreground text-xs font-medium uppercase tracking-wide',
+                    (header.column.columnDef.meta as { className?: string } | undefined)?.className,
+                  )}
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(header.column.columnDef.header, header.getContext())}
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows.map((row) => (
+            <TableRow key={row.id} data-state={row.getIsSelected() ? 'selected' : undefined}>
+              {row.getVisibleCells().map((cell) => (
+                <TableCell
+                  key={cell.id}
+                  className={cn(
+                    cellClass,
+                    (cell.column.columnDef.meta as { className?: string } | undefined)?.className,
+                  )}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+          </Table>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div
-      className={cn(
-        'shadow-card overflow-hidden rounded-xl ring-1 ring-border/60',
-        className,
-      )}
-    >
+    <div className={tableWrapClass}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((hg) => (

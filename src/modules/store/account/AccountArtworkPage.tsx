@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArtworkPreview } from '@/modules/signage/shared/components/ArtworkPreview'
-import { UploadField } from '@/modules/store/components/UploadField'
+import { UploadField } from '@/components/forms'
 import {
   approveArtworkProof,
   artworkProofsKey,
